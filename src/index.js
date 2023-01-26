@@ -19,6 +19,7 @@ function onInput(e) {
     clearCountriesSearchResult();
     return;
   }
+
   fetchCountries(name)
     .then(checkSearchResult)
     .catch(() => {

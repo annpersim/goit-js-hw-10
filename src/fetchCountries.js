@@ -1,16 +1,13 @@
 export { fetchCountries };
 
-function fetchCountries(name) {
+async function fetchCountries(name) {
   const fields = 'name,capital,population,flags,languages';
-  return fetch(`https://restcountries.com/v3.1/name/${name}?fields=${fields}`)
-    .then(response => {
-      if (!response.ok) {
-        throw new Error(response.status);
-      }
-      return response.json();
-    })
-    .then(country => {
-      return country;
-    })
-    .catch(console.error());
+  const response = await fetch(
+    `https://restcountries.com/v3.1/name/${name}?fields=${fields}`
+  );
+
+  if (!response.ok) {
+    throw new Error(response.status);
+  }
+  return response.json();
 }
